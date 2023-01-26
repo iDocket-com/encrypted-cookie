@@ -10,7 +10,7 @@ class AesEncryption {
   }
 }
 
-export var CryptoJS =
+var CryptoJS =
   CryptoJS ||
   (function (u, p) {
     var d = {},
