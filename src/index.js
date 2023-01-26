@@ -863,7 +863,8 @@ class CookieService {
     var d = new Date();
     d.setTime(d.getTime() + exDate * 24 * 60 * 60 * 1000);
     var expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + AesEncryption.encrypt(value,key)+ ";" + expires + ";SameSite=Lax;path=/";
+    var Aes = new AesEncryption();
+    document.cookie = name + "=" + Aes.encrypt(value,key)+ ";" + expires + ";SameSite=Lax;path=/";
   }
   setArrayCookie(name, value, exDay,key = "KarunaaharanBavaram"){
     this.setCookie(name, JSON.stringify(value), exDay,key);
@@ -885,7 +886,8 @@ class CookieService {
       }
       if (c.indexOf(name) === 0) {
         try{
-          return AesEncryption.decrypt(c.substring(name.length, c.length),key);
+          var Aes = new AesEncryption();
+          return Aes.decrypt(c.substring(name.length, c.length),key);
         }catch(error){
           return ""
         }
